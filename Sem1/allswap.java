@@ -1,5 +1,3 @@
-import java.util.function.DoubleToIntFunction;
-import java.util.function.IntToDoubleFunction;
 
 public class allswap {
     public static void main(String[] args) {
