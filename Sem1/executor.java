@@ -1,5 +1,5 @@
 
-public class executor {
+public class Executor {
     public static void main(String[] args) {
         System.out.println(executorGo(20.0,2.0,1.0,2.0));
     }

@@ -1,10 +1,10 @@
 
-public class allswap {
+public class Allswap {
     public static void main(String[] args) {
-        allswap( 4, 4);
+        swap( 4, 4);
     }   
 
-    public static void allswap(int N, int K)
+    public static void swap(int N, int K)
     {
         int temp = (int) Math.pow(K,N);
         for (int i = 0; i < Math.pow(K,N); i++)
