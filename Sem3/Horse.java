@@ -10,7 +10,7 @@ public class Horse {
                 { 2, 1 }, { 2, -1 },
                 { -1, -2 }, { -1, -2 } };
         int[][] board = new int[n][n];
-        doMoveHorse(board, horseDo, {0,0}, 0);
+        
         for (int i = 0; i < n; i++)
         {
             for(int j = 0; j < n; j++)
