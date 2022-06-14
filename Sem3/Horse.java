@@ -1,50 +1,59 @@
 import java.sql.Array;
 import java.util.Arrays;
 
+import javax.swing.plaf.basic.BasicTreeUI.TreeCancelEditingAction;
+import javax.xml.crypto.KeySelector.Purpose;
+
 public class Horse {
 
+    static int[][] board;
+    static int[][] moves;
+    static int maxMoves;
+
     public static void main(String[] args) {
-       int n = 8; 
-        int[][] horseDo = { { -2, 1 }, { -2, -1 },
+        board = new int[4][4];
+        maxMoves = board.length * board[0].length;
+        moves = new int[][] { { -2, 1 }, { -2, -1 },
                 { -1, 2 }, { 1, 2 },
                 { 2, 1 }, { 2, -1 },
                 { -1, -2 }, { -1, -2 } };
-        int[][] board = new int[n][n];
-        
-        for (int i = 0; i < n; i++)
-        {
-            for(int j = 0; j < n; j++)
-            {
-                System.out.print(board[i][j] + " ");
+
+        for (int i = 0; i < board.length; i ++){
+            for (int j = 0; j < board[0].length; j++){
+                if(findPath(i, j, 1)){
+                    printSol();
+                    return;
+                }
             }
-            System.out.println();
         }
+        System.out.println("Нет решений");
     }
-    public static boolean checkMove(int[] move, int[] position, int size)
-    {
-        if (move[0] + position[0] >= 0 && move[0] + position[0] < size
-        && move[1] + position[1] >= 0 && move[1] + position[1] < size){
-            return true;
+
+    static boolean isPossible(int x, int y){
+        return x >=0 && x < board.length && y >= 0 && y < board.length && board[x][y] == 0; 
+    }
+
+    static boolean findPath(int curX, int curY, int moveNum){
+        board[curX][curY] = moveNum;
+        if(moveNum >= maxMoves) return true;
+        
+        for(int i = 0; i < 8; i++){
+            int nextX = curX + moves[i][0];
+            int nextY = curY + moves[i][1];
+            if(isPossible(nextX, nextY) && findPath(nextX, nextY, moveNum + 1)){
+                return true;
+            }
         }
+        board[curX][curY] = 0;
         return false;
     }
 
-    public static void doMoveHorse(int[][] board, int[][] horseMove, int[] position, int index){
-        if(!checkMove(horseMove[index], position, board.length)){
-            return;
-        }
-        board[position[0]][position[1]] += 1;
-
-        for(int i = 0; i < horseMove.length; i ++){
-            if(!checkMove(horseMove[index], position, board.length)){
-                position[0] = horseMove[index][0] + position[0];
-                position[1] = horseMove[index][1] + position[1];
-                doMoveHorse(board, horseMove, position, index);
-                return;
+    static void printSol(){
+        for(int i = 0; i < board.length; i++){
+            for(int j = 0; j < board.length; j++){
+                System.out.println(board[i][j] + " ");
             }
-
+            System.out.println();
         }
-
-        
     }
 }
