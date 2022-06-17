@@ -22,7 +22,4 @@ public class ParkingSystem {
     private boolean placeFree (int placeNum){
         return placeNum > 0;
     }
-    public void getInfo(){
-        System.out.println(String.format("Big %d, Med %d, Small %d", bigPark, mediumPark, smallPark));
-    }
 }
