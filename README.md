@@ -16,3 +16,7 @@
 
 ### Директория Sem 4 содержит домашние задания ко четвертому семинару, а именно:
 * leetcode.md - Скрины задач с leetcode;
+* UndergroundSystem - Директория для решения задачи с leetcode:
+1. UndergroundSystem.java - Файл с Классом UndergroundSystem.
+2. Program.java - Файл с точкой входа.
+ 
