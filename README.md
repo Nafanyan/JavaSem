@@ -19,4 +19,10 @@
 * UndergroundSystem - Директория для решения задачи с leetcode:
 1. UndergroundSystem.java - Файл с Классом UndergroundSystem.
 2. Program.java - Файл с точкой входа.
+
+### Директория Sem 5 содержит домашние задания ко четвертому семинару, а именно:
+* leetcode.md - Скрины задач с leetcode;
+* leetcode1 - директорий с 1й задачай с leetcode
+* leetcode2 - директорий с 2й задачай с leetcode
+* leetcode3 - директорий с 3й задачай с leetcode
  
