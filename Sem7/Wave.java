@@ -4,6 +4,8 @@ import java.util.Queue;
 public class Wave {
     static int M = 5;
     static int N = 5;
+    static int[] row = new int[] { -1, 0, 0, 1 };
+    static int[] col = new int[] { 0, -1, 1, 0 };
 
     static boolean isValid(int[][] matrix, boolean[][] visited, int row, int col) {
         return ((row >= 0) && (row < M)) && ((col >= 0) && (col < N)) && (matrix[row][col] == 1)
@@ -11,17 +13,15 @@ public class Wave {
     }
 
     private static void bfs(int[][] matrix, int sourceX, int sourceY, int targetX, int targetY) {
-        int[] row = new int[] { -1, 0, 0, 1 };
-        int[] col = new int[] { 0, -1, 1, 0 };
-
-        int minimumDistance = Integer.MAX_VALUE;
+        
+        int minimumDistance = -1;
         boolean[][] visited = new boolean[M][N];
         visited[sourceX][sourceY] = true;
 
-        Queue<Node> q = new LinkedList<>();
-        q.add(new Node(sourceX, sourceY, 0));
-        while (!q.isEmpty()) {
-            Node currentNode = q.poll();
+        Queue<Point> pointPros = new LinkedList<>();
+        pointPros.add(new Point(sourceX, sourceY, 0));
+        while (!pointPros.isEmpty()) {
+            Point currentNode = pointPros.poll();
             if (currentNode.x == targetY && currentNode.y == targetX) {
                 minimumDistance = currentNode.dist;
                 break;
@@ -32,12 +32,12 @@ public class Wave {
                 int newY = currentNode.y + col[i];
                 if (isValid(matrix, visited, newX, newY)) {
                     visited[newX][newY] = true;
-                    Node n = new Node(newX, newY, currentNode.dist + 1);
-                    q.add(n);
+                    Point n = new Point(newX, newY, currentNode.dist + 1);
+                    pointPros.add(n);
                 }
             }
         }
-        if (minimumDistance == Integer.MAX_VALUE) {
+        if (minimumDistance == -1) {
             System.out.println("Not path");
         } else {
             System.out.println("The shorted path - " + minimumDistance);
@@ -56,12 +56,12 @@ public class Wave {
     }
 }
 
-class Node {
+class Point {
     public int x;
     public int y;
     public int dist;
 
-    Node(int x, int y, int dist) {
+    Point(int x, int y, int dist) {
         this.x = x;
         this.y = y;
         this.dist = dist;
